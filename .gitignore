@@ -12,3 +12,7 @@
 
 # ASP.NET logs and temp files
 *.log
+
+# Runtime uploads (keep folder, ignore generated files)
+DhoobiGO.API/wwwroot/uploads/*
+!DhoobiGO.API/wwwroot/uploads/.gitkeep

@@ -5,8 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// --- FORCED NETWORK BROADCAST FOR MOBILE APP ---
-builder.WebHost.UseUrls("http://0.0.0.0:5286");
+// Bind to Render's dynamic PORT in production; keep 5286 for local development.
+var port = Environment.GetEnvironmentVariable("PORT");
+builder.WebHost.UseUrls(!string.IsNullOrWhiteSpace(port)
+    ? $"http://0.0.0.0:{port}"
+    : "http://0.0.0.0:5286");
 
 // Add services to the container.
 builder.Services.AddControllers()
